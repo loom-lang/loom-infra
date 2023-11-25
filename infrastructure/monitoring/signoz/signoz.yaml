@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: signoz
+  namespace: signoz
+spec:
+  interval: 30m
+  targetNamespace: signoz
+  releaseName: signoz
+  chart:
+    spec:
+      chart: signoz
+      version: "0.x"
+      sourceRef:
+        kind: HelmRepository
+        name: signoz
+        namespace: signoz
+      interval: 12h
+  # Hassle: Signoz has a migration job run as a pre-install and post-upgrade Helm hook. This is combined with
+  # init containers that wait for the result of this job, which means we have to disable waiting for the install
+  # and upgrade to be done, so the job can run and the init containers can successfully start.
+  install:
+    disableWait: true
+  upgrade:
+    disableWait: true
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          - target:
+              group: batch
+              version: v1
+              kind: Job
+              name: signoz-schema-migrator
+            patch:
+              - op: add
+                path: /spec/template/metadata/annotations/linkerd.io~1inject
+                value: disabled

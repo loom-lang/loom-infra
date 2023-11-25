@@ -19,9 +19,35 @@ spec:
       interval: 12h
   values:
     collector:
-      enabled: false
+      config: |
+        receivers:
+          otlp:
+            protocols:
+              grpc:
+              http:
+          opencensus:
+          zipkin:
+          jaeger:
+            protocols:
+              grpc:
+              thrift_http:
+              thrift_compact:
+              thrift_binary:
+        processors:
+          batch:
+        extensions:
+          health_check:
+        exporters:
+          jaeger:
+            endpoint: signoz-otel-collector.signoz:14250
+            tls:
+              insecure: true
+        service:
+          extensions: [health_check]
+          pipelines:
+            traces:
+              receivers: [otlp,opencensus,zipkin,jaeger]
+              processors: [batch]
+              exporters: [jaeger]
     jaeger:
       enabled: false
-    webhook:
-      collectorSvcAddr: grafana-tempo-distributor.grafana.svc.cluster.local:55678
-      collectorSvcAccount: grafana-tempo

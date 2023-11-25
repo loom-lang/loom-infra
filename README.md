@@ -25,7 +25,6 @@ age-keygen -o .cert/age.agekey
 Update the public key in the `.sops.yaml` file. Finally, re-encrypt the following secrets using your own values:
 
 - `infrastructure/ingress/cloudflare-api-key.yaml`
-- `infrastructure/minio/access-key.yaml`
 
 ### Example
 
@@ -100,8 +99,6 @@ Because Flux sets up the whole infrastructure, the pods in the `flux-system` nam
 The individual components and technologies used are described in the respective README files.
 
 - Networking
-- Utilities
-- Storage
 - Monitoring
 - Ingress
 
@@ -161,8 +158,7 @@ Then edit `%SystemRoot%\System32\drivers\etc\hosts`:
 <WSL IP address> gitops.loom-lang.dev
 <WSL IP address> k8s.loom-lang.dev
 <WSL IP address> linkerd.loom-lang.dev
-<WSL IP address> grafana.loom-lang.dev
-<WSL IP address> minio.loom-lang.dev
+<WSL IP address> signoz.loom-lang.dev
 <WSL IP address> hubble.loom-lang.dev
 ```
 

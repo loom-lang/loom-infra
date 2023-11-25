@@ -5,7 +5,7 @@ metadata:
   name: tracing
   namespace: ingress
 spec:
-  service: grafana-tempo-distributor.grafana.svc.cluster.local:4317
+  service: signoz-otel-collector.signoz.svc.cluster.local:4317
   driver: opentelemetry
   config: {}
   custom_tags:

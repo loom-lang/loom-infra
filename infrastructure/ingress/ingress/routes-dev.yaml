@@ -38,22 +38,12 @@ spec:
 apiVersion: getambassador.io/v3alpha1
 kind: Mapping
 metadata:
-  name: grafana-dashboard
+  name: signoz-dashboard
   namespace: ingress
 spec:
-  hostname: "grafana.loom-lang.dev"
+  hostname: "signoz.loom-lang.dev"
   prefix: /
-  service: grafana.grafana:3000
----
-apiVersion: getambassador.io/v3alpha1
-kind: Mapping
-metadata:
-  name: minio
-  namespace: ingress
-spec:
-  hostname: "minio.loom-lang.dev"
-  prefix: /
-  service: minio.minio:9001
+  service: signoz-frontend.signoz:3001
 ---
 apiVersion: getambassador.io/v3alpha1
 kind: Mapping

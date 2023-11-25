@@ -4,5 +4,4 @@ namespace: linkerd-viz
 
 resources:
   - linkerd-viz.yaml
-  - grafana-auth.yaml
   - namespace.yaml

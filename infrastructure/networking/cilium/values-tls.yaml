@@ -2,4 +2,8 @@ hubble:
   tls:
     auto:
       enabled: true
+      # Hassle: TODO - even though we have cert-manager set up, after running for a while,
+      # the cert manager webhooks fail. This is documented under: https://docs.cilium.io/en/latest/gettingstarted/hubble-configuration/
+      # We are already following one of the suggested methods (upgrade from a non-TLS setup), but it still breaks'
+      # if the cluster is left to run for a while. Try to figure out what causes the issue so we can move to cert-manager.
       method: cronJob
