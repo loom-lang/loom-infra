@@ -23,6 +23,8 @@ spec:
     identity:
       issuer:
         scheme: "kubernetes.io/tls"
+    # Hassle: We have to use the edge version of Linkerd and use native sidecars, because we have a job resource
+    # in the signoz helm release that would never complete with the "stable" Linkerd proxy setup.
     proxy:
       nativeSidecar: true
   valuesFrom:

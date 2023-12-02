@@ -24,15 +24,3 @@ spec:
     disableWait: true
   upgrade:
     disableWait: true
-  postRenderers:
-    - kustomize:
-        patchesJson6902:
-          - target:
-              group: batch
-              version: v1
-              kind: Job
-              name: signoz-schema-migrator
-            patch:
-              - op: add
-                path: /spec/template/metadata/annotations/linkerd.io~1inject
-                value: disabled
