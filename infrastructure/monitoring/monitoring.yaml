@@ -29,6 +29,7 @@ spec:
   path: ./infrastructure/monitoring/linkerd-viz
   prune: true
   wait: true
+  timeout: 10m
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization

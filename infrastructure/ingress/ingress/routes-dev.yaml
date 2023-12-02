@@ -43,7 +43,7 @@ metadata:
 spec:
   hostname: "signoz.loom-lang.dev"
   prefix: /
-  service: signoz-frontend.signoz:3001
+  service: signoz-frontend.signoz:3301
 ---
 apiVersion: getambassador.io/v3alpha1
 kind: Mapping
